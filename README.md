@@ -1,2 +1,2 @@
 # rumos-javascript
-Curso de Java da Rumos
+Curso de Java da Rumos, módulo JavaScript/TypeScript
