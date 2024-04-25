@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tarefa 09</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        /* Style the buttons that are used to open and close the accordion panel */
+        .accordion {
+            background-color: #eee;
+            color: #444;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: left;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+        }
+
+        /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
+
+        /* Style the accordion panel. Note: hidden by default */
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            display: none;
+            overflow: hidden;
+        }
+
+        .form_container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            border-color: black;
+            border-width: 2px;
+        }
+
+        .button_add {
+            background-color: rgba(82, 145, 19, 0.726);
+            color: white;
+            padding: 3px;
+            border-radius: 3px;
+            border: none;
+        }
+
+        .button_delete {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 1px
+        }
+
+        span {
+            margin-right: 12px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="tab">
+        <button class="tablinks active" onclick="openTab(event, 'Form')">Form</button>
+        <button class="tablinks" onclick="openTab(event, 'Todo')">Todo List</button>
+        <button class="tablinks" onclick="openTab(event, 'About')">About Me</button>
+    </div>
+
+    <div id="Form" class="tabcontent" style="display: block;">
+        <form id="utilizador">
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" name="nome" required>
+            <br>
+            <br>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <br>
+            <label for="situacao">Situação Profissional</label>
+            <select name="situacao" id="situacao">
+                <option value="estudante">Estudante</option>
+                <option value="trabalhador">Trabalhador</option>
+                <option value="trabalhador_estudante">Trabalhador / Estudante</option>
+                <option value="reformado">Reformado</option>
+            </select>
+            <br>
+            <br>
+            <p>Hobbies</p>
+            <input type="checkbox" id="viajar" name="hobbies" value="Viajar">
+            <label for="viajar"> Viajar</label><br>
+            <input type="checkbox" id="jogar" name="hobbies" value="Jogar">
+            <label for="jogar"> Jogar</label><br>
+            <input type="checkbox" id="tocar" name="hobbies" value="Tocar">
+            <label for="tocar"> Tocar</label><br><br>
+            <button type="submit">Submeter</button>
+        </form>
+    </div>
+
+    <div id="Todo" class="tabcontent">
+        <div id="container"
+            style="margin-left: 40% !important; border-right-style: solid !important; border-right-width: 0px !important; margin-right: 40% !important;">
+            <div id="form_container" class="form_container" style="margin-bottom: 10px !important;">
+                <input type="text" id="task" placeholder="Add a new task" onfocus="this.value=''"
+                    style="height: 30px !important;">
+                <input type="button" id="add_task" value="Add Task" class="button_add" onclick="addTask()"
+                    style="padding-bottom: 6px !important; padding-top: 6px !important;" />
+            </div>
+            <div id="list_container">
+                <ul id="todo_list"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="About" class="tabcontent">
+        <h3>About Me</h3>
+        <button class="accordion">Education</button>
+        <div class="panel">
+            <p>Details about education...</p>
+        </div>
+
+        <button class="accordion">Experience</button>
+        <div class="panel">
+            <p>Experience details...</p>
+        </div>
+
+        <button class="accordion">Hobbies</button>
+        <div class="panel">
+            <p>Hobbies details...</p>
+        </div>
+    </div>
+
+    <script>
+        // Tabs
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // Accordion
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                /* Toggle between adding and removing the "active" class,
+                to highlight the button that controls the panel */
+                this.classList.toggle("active");
+
+                /* Toggle between hiding and showing the active panel */
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+
+        // Todo List
+        function addTask() {
+            let task = document.getElementById('task').value;
+
+            if (task === '') {
+                alert('Não pode ser vazia');
+            } else {
+                let list = document.getElementById('todo_list');
+
+                let li = document.createElement('li');
+                let span = document.createElement('span');
+                span.innerText = task;
+
+                let deleteButton = document.createElement('input');
+                deleteButton.setAttribute('type', 'button');
+                deleteButton.setAttribute('value', 'Delete');
+                deleteButton.addEventListener('click', () => {
+                    deleteButton.parentElement.remove();
+                });
+                deleteButton.className = 'button_delete';
+
+                li.appendChild(span);
+                li.appendChild(deleteButton);
+
+                list.appendChild(li);
+                document.getElementById('task').value = '';
+            }
+        }
+
+        // Form
+        let formulario = document.getElementById('utilizador');
+
+        // mock
+        document.getElementById('nome').value = 'Joaquim';
+        document.getElementById('email').value = 'joaquim@google.com';
+        document.getElementById('situacao').value = 'trabalhador_estudante';
+        document.getElementById('viajar').checked = true;
+        document.getElementById('jogar').checked = true;
+
+        var utilizador = {};
+
+        formulario.addEventListener('submit', function (event) {
+            event.preventDefault();
+            let nome = document.getElementById('nome').value;
+            let email = document.getElementById('email').value;
+
+            if (nome == undefined || nome === '' || email == undefined || email === '') {
+                alert('Os campos nome e email são obrigatórios');
+                event.preventDefault();
+                return;
+            }
+
+            let situacao = document.getElementById('situacao').value;
+
+            let hobbies = document.getElementsByName('hobbies');
+            let hobbies_selecionados = [];
+            for (let i = 0; i < hobbies.length; i++) {
+                if (hobbies[i].checked) {
+                    hobbies_selecionados.push(hobbies[i].value);
+                }
+            }
+
+            utilizador = {
+                nome: nome,
+                email: email,
+                situação: situacao,
+                hobbies: hobbies_selecionados
+            }
+            console.log(utilizador);
+            alert(`Utilizador ${utilizador.nome} adicionado com sucesso`);
+        });
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefa 08</title>
+</head>
+
+<body>
+    <form id="utilizador">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" name="nome" required>
+        <br>
+        <br>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+        <br>
+        <label for="situacao">Situação Profissional</label>
+        <select name="situacao" id="situacao">
+            <option value="estudante">Estudante</option>
+            <option value="trabalhador">Trabalhador</option>
+            <option value="trabalhador_estudante">Trabalhador / Estudante</option>
+            <option value="reformado">Reformado</option>
+        </select>
+        <br>
+        <br>
+        <p>Hobbies</p>
+        <input type="checkbox" id="viajar" name="hobbies" value="Viajar">
+        <label for="viajar"> Viajar</label><br>
+        <input type="checkbox" id="jogar" name="hobbies" value="Jogar">
+        <label for="jogar"> Jogar</label><br>
+        <input type="checkbox" id="tocar" name="hobbies" value="Tocar">
+        <label for="tocar"> Tocar</label><br><br>
+        <button type="submit">Submeter</button>
+    </form>
+    <script src="./tarefa.js"></script>
+</body>
+
+</html>
