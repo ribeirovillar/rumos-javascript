@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Tarefa 05.01</title>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            color: blue;
+            font-size: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Tarefa 05.01</h1>
+    <h2>1. Criar uma página HTML com um parágrafo com um texto aleatório. Adicionar a instrução
+        JavaScript para alterar o conteúdo do parágrafo.</h2>
+    <p>Bom dia</p>
+    <hr>
+    <h2>2. Criar uma lista não ordenada (ul) com várias linhas. Usar o getElementsByTagName para contar quantas linhas
+        estão contidas na lista e apresentar o contador na página.</h2>
+
+    <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+    </ul>
+    <span id='quantidade'>Quantidade de itens na lista:</span>
+    <script>
+        setTimeout(function () {
+            document.getElementsByTagName('p')[0].innerText = 'Boa noite';
+            document.getElementsByTagName('p')[0].style.color = 'black';
+        }, 3000);
+        let quantidade = document.getElementsByTagName('li').length;
+        document.getElementById('quantidade').innerText = 'Quantidade de itens na lista: ' + quantidade;
+    </script>
+</body>
+
+</html>
