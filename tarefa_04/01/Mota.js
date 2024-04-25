@@ -1,3 +1,5 @@
+const Veiculo = require('./Veiculo.js');
+
 class Mota extends Veiculo {
     ligar() {
         console.log('Ligando o mota...');
@@ -6,3 +8,5 @@ class Mota extends Veiculo {
         console.log('Desligando o mota...');
     }
 }
+
+module.exports = Mota;

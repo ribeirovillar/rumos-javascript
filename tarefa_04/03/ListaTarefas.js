@@ -1,4 +1,4 @@
-export class ListaTarefas {
+class ListaTarefas {
     constructor() {
         this.tarefas = [];
     }
@@ -7,8 +7,8 @@ export class ListaTarefas {
         this.tarefas.push(tarefa);
     }
 
-    remover(indice) {
-        this.tarefas.splice(indice - 1, 1);
+    modificar(indice, tarefa) {
+        this.tarefas[indice - 1] = tarefa;
     }
 
     listar() {
@@ -17,3 +17,5 @@ export class ListaTarefas {
         }
     }
 }
+
+module.exports = ListaTarefas;

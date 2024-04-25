@@ -12,3 +12,5 @@ class ContaBancaria {
         this.saldo -= valor;
     }
 }
+
+module.exports = ContaBancaria;

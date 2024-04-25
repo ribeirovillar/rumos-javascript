@@ -12,3 +12,5 @@ class Veiculo {
         console.log('Desligando o veículo...')
     }
 }
+
+module.exports = Veiculo;

@@ -1,30 +1,5 @@
-class Tarefa {
-    constructor(descricao, prioridade, concluida) {
-        this.descricao = descricao;
-        this.prioridade = prioridade;
-        this.concluida = concluida;
-    }
-}
-
-class ListaTarefas {
-    constructor() {
-        this.tarefas = [];
-    }
-
-    adicionar(tarefa) {
-        this.tarefas.push(tarefa);
-    }
-
-    modificar(indice, tarefa) {
-        this.tarefas[indice - 1] = tarefa;
-    }
-
-    listar() {
-        for(let i = 0; i < this.tarefas.length; i++) {
-            console.log(i+1 + ' - ' + this.tarefas[i].descricao);
-        }
-    }
-}
+const Tarefa = require('./Tarefa.js');
+const ListaTarefas = require('./ListaTarefas.js');
 
 const tarefa1 = new Tarefa('Fazer compras', 'alta', false);
 const tarefa2 = new Tarefa('Estudar', 'baixa', true);

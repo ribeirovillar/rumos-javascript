@@ -1,4 +1,6 @@
-class Carro extends Veiculo {
+ const Veiculo = require('./Veiculo.js');
+ 
+ class Carro extends Veiculo {
     ligar() {
         console.log('Ligando o carro...');
     }
@@ -6,3 +8,5 @@ class Carro extends Veiculo {
         console.log('Desligando o carro...');
     }
 }
+
+module.exports = Carro;
